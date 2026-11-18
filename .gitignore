@@ -1,0 +1,10 @@
+.env
+.env.*
+!.env.example
+.runtime/
+.local/
+node_modules/
+__pycache__/
+*.py[cod]
+.venv/
+*.log

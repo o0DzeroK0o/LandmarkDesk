@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="vi"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LandmarkDesk</title>
+<style>
+:root{font:15px/1.5 Inter,"Segoe UI",sans-serif;color:#e8e9ee;background:#11141a;color-scheme:dark}
+*{box-sizing:border-box}body{margin:0}header,main{max-width:1480px;margin:auto;padding:20px 4vw}
+header{border-bottom:1px solid #343a45;display:flex;align-items:center;gap:14px}header b{font-size:20px}header span:last-child{margin-left:auto}
+.mark{background:#acf17f;color:#162616;padding:3px 10px;border-radius:6px;font:bold 19px monospace}.muted,small{color:#a6aebc}
+h1{font:600 clamp(30px,4vw,54px)/1.05 Inter,"Segoe UI",sans-serif;letter-spacing:-.045em;margin:14px 0}
+h2{font-size:19px;margin:0}p{margin:7px 0 14px}.row,.actions,.head{display:flex;align-items:center;gap:9px;flex-wrap:wrap}.head{justify-content:space-between}
+button,select,input,textarea{font:inherit;color:inherit;border:1px solid #424a58;background:#222731;border-radius:7px;padding:8px 12px}
+button{cursor:pointer}button:disabled{opacity:.45;cursor:default}button:hover:enabled{border-color:#afda92}.primary{background:#acf17f;color:#172411;font-weight:650;border-color:#acf17f}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:22px 0}.metric,article{background:#1a1e26;border:1px solid #333a46;border-radius:12px}
+.metric{padding:12px 18px}.metric strong{display:block;font:600 29px "Segoe UI",sans-serif}.layout{display:grid;grid-template-columns:minmax(360px,.88fr) minmax(470px,1.25fr);gap:16px}
+article{padding:18px;min-width:0}.scroll{max-height:61vh;overflow:auto}.frame{display:grid;grid-template-columns:45px minmax(110px,1fr) auto;gap:8px;align-items:center;width:100%;padding:10px;text-align:left;border:0;border-bottom:1px solid #343943;border-radius:0;background:transparent}
+.frame[aria-current=true]{background:#29362d;box-shadow:inset 3px 0 #acf17f}.tag{font-size:12px;color:#dbb56a}.status{color:#acf17f}progress{accent-color:#acf17f;width:100%;height:6px}
+img{width:100%;height:auto;max-height:380px;object-fit:contain;background:#0b0d10;border-radius:8px}.empty{padding:45px 18px;text-align:center;color:#a6aebc}
+table{border-collapse:collapse;width:100%;font-size:13px}th,td{text-align:left;padding:5px;border-bottom:1px solid #353a44}td input{width:72px;padding:4px}td select{padding:4px}
+details{margin-top:12px}summary{cursor:pointer}label{display:block;margin:9px 0}textarea{width:100%}#error{color:#ffd289;white-space:pre-line}
+details{overflow-x:auto}td input{max-width:65px}td.muted{padding-bottom:12px}
+@media(max-width:920px){.layout{grid-template-columns:1fr}.scroll{max-height:300px}.metrics{grid-template-columns:1fr 1fr}}
+html,body{height:100%;margin:0}
+body{min-height:0;display:flex;flex-direction:column}
+header,main{width:100%;padding:10px clamp(12px,2vw,32px)}
+header{flex-wrap:wrap}main{display:flex;flex:1;min-height:0;flex-direction:column;gap:8px;overflow:auto}
+h1{font-size:clamp(20px,2vw,30px);margin:0}.metrics{gap:8px;margin:0;grid-template-columns:repeat(4,minmax(0,1fr))}
+.metric{padding:5px 12px;display:flex;align-items:center;justify-content:space-between;gap:5px}.metric strong{font-size:21px}
+progress{flex:none}#error{margin:0}#error:empty{display:none}
+.layout{display:grid;flex:1;min-height:0;grid-template-columns:minmax(218px,.55fr) minmax(0,1.6fr)}
+article{padding:12px;display:flex;flex-direction:column;min-height:0;gap:7px}
+.scroll,#detail{overflow:auto;min-height:0;flex:1;max-height:none;scrollbar-gutter:stable}
+.head,.actions,.tabs{flex:none}.tabs{display:flex;gap:6px}.tabs button[aria-pressed=true]{border-color:#acf17f;background:#28372b}
+.frame{grid-template-columns:28px 1fr auto}#detail img{max-height:34vh}
+.preview{position:relative;margin:0 auto;max-width:100%;width:fit-content}.preview img{display:block;width:auto;max-width:100%;height:auto}
+.preview canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.preview.face-plan img{display:none}
+.preview.face-plan canvas{position:static;display:block;width:auto;height:auto;max-height:34vh;max-width:100%}
+.swapbar,.views{display:flex;flex-wrap:wrap;gap:5px;margin:7px 0}.sticky-actions{border-top:1px solid #343a45;padding-top:6px}
+.frame-row{display:flex;align-items:center}.frame-row .frame{flex:1;min-width:0}.frame-row label{padding:9px;margin:0;cursor:pointer}.frame-row input{width:17px;height:17px;margin:0;accent-color:#acf17f}
+.batch-actions{border-top:1px solid #343a45;padding-top:8px}.batch-actions p,#runIssues{margin:2px 0;font-size:13px}#runIssues{color:#ffd289;max-height:12vh;overflow:auto;white-space:pre-line}
+dialog{color:inherit;background:#1a1e26;border:1px solid #596572;border-radius:12px;padding:22px;max-width:min(450px,92vw)}dialog::backdrop{background:#000a}dialog .actions{justify-content:flex-end}
+[hidden]{display:none!important}
+@media(max-width:740px),(max-height:540px){
+  html,body{height:auto;min-height:100%}main{display:block;overflow:visible}main>*{margin-bottom:8px}
+  .layout{display:flex;flex-direction:column}.scroll{max-height:22vh}#detail{overflow:visible}
+  .metrics{grid-template-columns:1fr 1fr}.sticky-actions{position:sticky;bottom:0;background:#1a1e26}.tabs{flex-wrap:wrap}
+}
+</style>
+<header><span class="mark">H17</span><b>LandmarkDesk</b><select id="mode" aria-label="Chọn job"><option value="pose">HumanPose 17</option><option value="face">Face Landmark 50</option></select><span class="status" id="status">Đang kết nối</span></header>
+<main><div class="head"><div><h1>Annotation người lái</h1><span class="muted"><span id="modelName"></span> · CVAT Draw skeleton</span></div>
+<div class="actions"><button id="open">Mở CVAT</button><button id="pause">Tạm dừng</button><button class="primary" id="start">Chạy toàn job</button></div></div>
+<div class="metrics"><div class="metric">Đã rà<strong id="count">0 / 0</strong></div><div class="metric">Đã lưu CVAT<strong id="saved">0</strong></div><div class="metric">Chờ review<strong id="review">0</strong></div><div class="metric">Gợi ý sửa<strong id="suggest">0</strong></div></div>
+<progress id="progress" max="1" value="0"></progress><p id="error" role="status"></p>
+<div class="layout"><article><div class="head"><h2>Danh sách frame</h2><select id="filter" aria-label="Lọc frame"><option value="">Tất cả</option><option value="proposal">Gợi ý sửa</option><option value="review">Cần review</option><option value="saved">Đã lưu</option><option value="error">Lỗi</option></select></div>
+<div class="actions"><button id="runPicked" disabled>Chạy frame đã tích (0)</button><button id="clearPicked" hidden>Bỏ tích</button></div>
+<small id="runHint">Tích ô cạnh số frame để chạy lại AI trên các frame đó.</small><div id="runIssues" role="status"></div>
+<div class="scroll" id="list"></div><div class="batch-actions"><button id="apply" class="primary" aria-describedby="applyHint" disabled>Áp dụng lựa chọn sau khi rà hết</button><p id="applyHint" class="muted" role="status"></p></div></article>
+<article><div class="head"><h2 id="title">Chi tiết frame</h2><button id="native" hidden>Xem trên CVAT</button></div>
+<nav class="tabs" aria-label="Chức năng"><button id="drawTab" aria-pressed="true">Vẽ và phê duyệt</button><button id="reviewTab" aria-pressed="false" disabled title="Review mở sau khi bản vẽ được xác minh trên CVAT.">Review</button></nav>
+<div id="detail" class="empty" tabindex="0">Chọn một frame để xem ảnh và từng khớp.</div>
+<div id="frameActions" class="actions sticky-actions" hidden></div></article></div></main>
+<dialog id="applyDialog" aria-labelledby="confirmTitle" aria-describedby="confirmFrames"><h2 id="confirmTitle">Lưu các lựa chọn lên CVAT?</h2><p id="confirmFrames"></p><div class="actions"><button id="cancelApply" autofocus>Quay lại</button><button id="confirmApply" class="primary">Xác nhận lưu</button></div></dialog>
+<script src="studio-ui.js"></script></html>

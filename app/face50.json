@@ -1,0 +1,58 @@
+[
+  {
+    "name": "longmaytrai",
+    "first": 0,
+    "count": 5,
+    "minVisible": 3,
+    "closed": false,
+    "rule": "Upper hair/forehead boundary, five equally spaced points, outer tail (0) to inner head (4)."
+  },
+  {
+    "name": "longmayphai",
+    "first": 5,
+    "count": 5,
+    "minVisible": 3,
+    "closed": false,
+    "rule": "Upper hair/forehead boundary, five equally spaced points, inner head (5) to outer tail (9)."
+  },
+  {
+    "name": "songmui",
+    "first": 10,
+    "count": 4,
+    "minVisible": 2,
+    "closed": false,
+    "rule": "Three equal intervals down bridge. 10 is the depression between eyes level with inner canthi. 13 is the foot of the bridge above nostrils, short of the nose tip."
+  },
+  {
+    "name": "mattrai",
+    "first": 14,
+    "count": 8,
+    "minVisible": 4,
+    "closed": true,
+    "rule": "Start at outside corner 14, follow upper lid margin through 15–17 to inner corner 18, return along lower lid 19–21. Sample at 1/4, 1/2, 3/4 width."
+  },
+  {
+    "name": "matphai",
+    "first": 22,
+    "count": 8,
+    "minVisible": 4,
+    "closed": true,
+    "rule": "Start at inner corner 22, upper lid 23–25, outer corner 26, return on lower lid 27–29 at corresponding quarter positions."
+  },
+  {
+    "name": "moingoai",
+    "first": 30,
+    "count": 12,
+    "minVisible": 6,
+    "closed": true,
+    "rule": "Follow red lip to skin boundary. Left/right corners 30/36, middle 33/39. Upper points 31–35 at 0.18, 0.36, 0.50, 0.66, 0.84 of width. Return along bottom with five equally spaced points 37–41."
+  },
+  {
+    "name": "moitrong",
+    "first": 42,
+    "count": 8,
+    "minVisible": 4,
+    "closed": true,
+    "rule": "Inside outer lip. Follow lip/opening boundary, not teeth or tongue. Corners 42/46; place central points 44/48 first, then upper 43–45 and lower 47–49 at quarter-width positions. Retain all 8 along seam of a closed mouth."
+  }
+]
